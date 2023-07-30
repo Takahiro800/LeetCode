@@ -3,6 +3,21 @@
   - [ruby/ruby: The Ruby Programming Language](https://github.com/ruby/ruby)
   - [【超入門】キミにも読める！Rubyのソースコードの歩き方 - Qiita](https://qiita.com/suketa/items/f66ba5ad536d11ff0639)
 
+# 1 Two Sum
+## 二重ループを使わずにHashで検索をすると効率が良い。
+```ruby:
+def two_sum(nums, target)
+  nums.each_with_index.each_with_object({}) do |(n, i), hash|
+    return [hash[target - n], i] if hash[target - n]
+
+    hash[n] = i
+  end
+end
+```
+- [ ] `each_with_index`と`each_with_object`を繋げて利用した
+- [ ] 順序はどちらでも良い。
+- [ ] 引数の設定に注意する
+
 # 217
 ## Array#uniqのコードを追う
 ```c:array.c
