@@ -2,11 +2,11 @@
 # @param {Integer} target
 # @return {Integer[]}
 def two_sum(nums, target)
-  len = nums.length
+  hash = {}
 
-  (0...len).each do |i|
-    (i + 1...len).each do |j|
-      return [i, j] if nums[i] + nums[j] == target
-    end
+  nums.each_with_index do |num, i|
+    return [i, hash[target - num]] if hash[target - num]
+
+    hash[num] = i
   end
 end
