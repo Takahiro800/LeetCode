@@ -3,8 +3,5 @@
 # @return {Integer[]}
 def top_k_frequent(nums, k)
   hash = nums.tally
-  counter_array = Array.new(hash.values.max + 1) { [] }
-
-  hash.each_pair { |key, value| counter_array[value].append(key) }
-  counter_array.flatten.last(k)
+  hash.max_by(k) { |_, value| value }.to_h.keys
 end

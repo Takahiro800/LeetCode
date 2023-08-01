@@ -18,6 +18,11 @@ end
 - [ ] 順序はどちらでも良い。
 - [ ] 引数の設定に注意する
 
+# 49.group-anagrams.rb
+- [ ] HashよりもArrayの方がメモリを使わずに済む？
+  - [ ] joinした結果、容量が不要なだけかも
+    - [ ] 多分、そう。`join`しなければほぼ変わらないことを確認した
+
 # 217
 ## Array#uniqのコードを追う
 ```c:array.c
@@ -181,3 +186,44 @@ end
   - Each key is an element in self.
   - Each value is the number elements equaal to that key.
   - when with hash argument, add each value, this may be usefull for accumulating tailes across multiple enumrables;
+
+# 347
+- `bucket sort`を使った
+
+## Bucket Sortとは？
+- Hashのようにket, valueの組み合わせを持つような事象に関して、大小を比較し、上位・下位複数の〜を取得する際に便利。
+  - `Enumrable#max_by`と同じかも？
+- 今回はnumsに含まれる回数に着目する課題であったので、key: 数値、value:回数として、values.max+1(0 originのため)のArrayを用意した
+
+## 解答
+- O(n)
+- O(n)
+
+```ruby:
+def top_k_frequent(nums, k)
+  hash = nums.tally
+	counter_array = Array.new(hash.values.max + 1) {[]}
+
+	hash.each_pair { |key, value| counter_array[value].append(key) }
+	counter_array.flatten.last(k)
+end
+```
+
+## 別解
+- `max_by`を使う
+
+```ruby:
+def top_k_frequent(nums, k)
+  hash = nums.tally
+	hash.max_by(k) { |_, value| value}.to_h.keys
+end
+```
+
+## 誤答
+```ruby:
+def top_k_frequent(nums, k)
+  hash = nums.tally
+  max_count = hash.values.max(k)
+  max_count.map { |count| hash.key(count) }
+end
+```
