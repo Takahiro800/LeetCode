@@ -1,7 +1,13 @@
 # @param {String[]} strs
 # @return {String[][]}
 def group_anagrams(strs)
-  strs.group_by do |str|
-    str.chars.tally
-  end.map { |_, value| value }
+  anagrams = Hash.new { |h, k| h[k] = [] }
+
+  strs.each do |str|
+    hash = Hash.new(0)
+    str.each_char { |c| hash[c] += 1 }
+    anagrams[hash].append(str)
+  end
+
+  anagrams.values
 end

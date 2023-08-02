@@ -23,6 +23,31 @@ end
   - [ ] joinした結果、容量が不要なだけかも
     - [ ] 多分、そう。`join`しなければほぼ変わらないことを確認した
 
+## 解答
+```ruby:
+def group_anagrams(strs)
+  anagrams = Hash.new { |h, k| h[k] = [] }
+
+  strs.each do |str|
+    hash = Hash.new(0)
+    str.each_char { |c| hash[c] += 1 }
+    anagrams[hash].append(str)
+  end
+
+  anagrams.values
+end
+```
+
+- Hash.new([]) は同じオブジェクトを参照するために予期せぬものとなるので注意。
+  - 初期値が数値の場合は、問題なく動作するようにver2.4くらいで調整が入ったらしい
+
+## Rubyらしい別解
+```ruby:
+def group_anagrams(strs)
+  strs.group_by { |str| str.chars.sort }.values
+end
+```
+
 # 217
 ## Array#uniqのコードを追う
 ```c:array.c
