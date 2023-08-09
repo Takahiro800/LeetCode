@@ -1,7 +1,6 @@
 # @param {Character[][]} board
 # @return {Boolean}
 def is_valid_sudoku(board)
-  # SQUARE_NUM = 3
   valid_rows_and_columns?(board) && valid_boxes?(board)
 end
 
@@ -21,27 +20,26 @@ def valid_rows_and_columns?(board)
   true
 end
 
-def valid_boxes?(board)
-  y_cap = 0
-
-  until y_cap == 9
-    x_cap = 0
-
-    until x_cap == 9
-      box = []
-      (y_cap...(y_cap + 3)).each do |y|
-        (x_cap...(x_cap + 3)).each do |x|
-          box << board[y][x]
-        end
-
-        return false unless valid?(box)
-      end
-      x_cap += 3
+def extract_box(board, y, x)
+  box = []
+  (y...(y+3)). each do |j|
+    (x...(x+3)). each do |i|
+      box << board[j][i]
     end
-    y_cap += 3
   end
 
-  true
+  box
+end
+
+def valid_boxes?(board)
+  start_points = (0..2).flat_map { |y| (0..2).map { |x| [y*3, x*3] } }
+
+  box_validities = start_points.map do |y, x|
+    box = extract_box(board, y, x)
+    valid?(box)
+  end
+
+  box_validities.all?
 end
 
 def valid?(array)
