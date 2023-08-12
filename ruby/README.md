@@ -18,6 +18,29 @@ end
 - [ ] 順序はどちらでも良い。
 - [ ] 引数の設定に注意する
 
+# 36 valid-sudoku
+- ひとつのマスに注目するのではなく、転置な場所も同時に見ている感じ？
+```ruby:
+row << board[y][x]
+
+# こうすることで、xを増やすだけで、（別のマスに注目することになるが）列についても同時に処理している
+column << board[x][y]
+```
+
+- 各列・行・スペースが有効かどうか( 重複した値が存在しないか )は、他の問題同様に、Hashを使った。
+```ruby:
+def valid?(array)
+  array.each_with_object({}) do |cell, hash|
+    next if cell == '.'
+    return false if hash.key?(cell)
+
+    hash[cell] = true
+  end
+
+  true
+end
+```
+
 # 49.group-anagrams.rb
 - [ ] HashよりもArrayの方がメモリを使わずに済む？
   - [ ] joinした結果、容量が不要なだけかも
