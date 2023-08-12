@@ -18,6 +18,9 @@ end
 - [ ] 順序はどちらでも良い。
 - [ ] 引数の設定に注意する
 
+# 20 valid-parentheses
+- stackを使った
+
 # 36 valid-sudoku
 - ひとつのマスに注目するのではなく、転置な場所も同時に見ている感じ？
 ```ruby:
@@ -70,6 +73,8 @@ def group_anagrams(strs)
   strs.group_by { |str| str.chars.sort }.values
 end
 ```
+
+# 128
 
 # 217
 ## Array#uniqのコードを追う
