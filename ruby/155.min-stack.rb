@@ -1,36 +1,32 @@
 class MinStack
-  attr_accessor :stack, :minimum
+  attr_accessor :stack
 
   def initialize()
     @stack = []
-    @minimum = nil
   end
 
 
   def push(val)
-    self.minimum = minimum.nil? ? val : [minimum, val].min
-    self.stack = [val, stack].flatten
-
-    return
+    min = if stack.empty?
+            val
+          else
+            [stack.last[1], val].min
+          end
+    stack << [val, min]
   end
 
 
   def pop()
-    new_stack = stack[1..]
-
-    @stack = new_stack
-    @minimum = new_stack.min
-    "minimum: #{minimum}"
-
+    stack.pop
     return
   end
 
 
   def top()
-    stack[0]
+    stack.last[0]
   end
 
   def get_min()
-    minimum
+    stack.last[1]
   end
 end
