@@ -76,6 +76,21 @@ end
 
 # 128
 
+# 150.evaluate-reverse-polish-notation
+- stackを使うだけ
+- 「0に向かって、切り捨て」をうまく処理する必要がある
+- `public_send`でパブリックメソッドのみを呼び出すことができるっぽい
+  - が、下記のように, `to_f`や`to_i`によって可読性が下がると判断した
+- [ ] 要素数が１でも、.last　よりも.firstの方が処理が早い。(当たり前か)
+
+```ruby
+a.to_f.public_send(operator, b).to_i
+```
+
+# 155 min-stack
+- push, popするたびにminを変更するのではなく、minも配列として都度保存していけば良い
+- LIFOなので、minの管理が楽だった
+
 # 217
 ## Array#uniqのコードを追う
 ```c:array.c
