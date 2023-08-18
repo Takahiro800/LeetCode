@@ -21,6 +21,15 @@ end
 # 20 valid-parentheses
 - stackを使った
 
+# 22.generate-parentheses
+## 考察
+- 全体に被せたりするのではなく、愚直に左から順にみていく
+- open_bracket,close_bracketはそれぞれ、n以下である
+- open_bracketの数 >= close_bracketの数である
+- 再帰を使う(頭の中に木構造)
+
+実装方針としては、closesをopensに合わせるのを優先的に処理した
+
 # 36 valid-sudoku
 - ひとつのマスに注目するのではなく、転置な場所も同時に見ている感じ？
 ```ruby:
