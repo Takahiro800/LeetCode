@@ -304,3 +304,35 @@ def top_k_frequent(nums, k)
   max_count.map { |count| hash.key(count) }
 end
 ```
+
+# 739.daily-temperatures
+- stackに入るのは必ずしも連続しているわけではない。
+- 最後に、stackに残っているものはまとめて0に変換する必要があった。
+  - これを、「最後の要素については必ず0になる」と書き換えて間違えた。ここで「最後の要素だけか？」を考えられると良かった。
+- stackはpopした後にemptyかの確認が必要だった
+
+## 最初の回答
+```ruby:
+def daily_temperatures(temperatures)
+  ans = []
+  stack = []
+
+  temperatures.each_with_index do |temperature, i|
+    if stack.empty?
+      stack.push(i)
+    else
+      while !stack.empty? && temperatures[stack.last] < temperature
+        ans[stack.last] = i - stack.last
+        stack.pop
+      end
+      stack.push(i)
+    end
+  end
+
+  stack.each do |i|
+    ans[i] = 0
+  end
+
+  ans
+end
+```
