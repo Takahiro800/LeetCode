@@ -306,10 +306,37 @@ end
 ```
 
 # 739.daily-temperatures
+- 現在のデータと、まだ処理していない未来のデータを比較する問題。
+  - Stackを使った
 - stackに入るのは必ずしも連続しているわけではない。
 - 最後に、stackに残っているものはまとめて0に変換する必要があった。
   - これを、「最後の要素については必ず0になる」と書き換えて間違えた。ここで「最後の要素だけか？」を考えられると良かった。
 - stackはpopした後にemptyかの確認が必要だった
+
+## 改善する
+- ~~Hashだと、stackの要素を再度取りに行く必要がないのでは？と思ったが、そうすると順序を制御できない~~
+- ~~Array[Hash]という形にすれば良い。~~
+  - => runtimeもmemoryも改悪されてしまった。Hashはリソースを食うようなので避ける
+- 最終的にnilの部分を0埋めしているが、これを最初から0にしてやれば良い。
+
+## 解答
+```ruby:
+def daily_temperatures(temperatures)
+  ans = Array.new(temperatures.length, 0)
+  stack = []
+
+  temperatures.each_with_index do |temp, i|
+    while !stack.empty? && temperatures[stack.last] < temp
+      ans[stack.last] = i - stack.last
+      stack.pop
+    end
+
+    stack.push(i)
+  end
+
+  ans
+end
+```
 
 ## 最初の回答
 ```ruby:

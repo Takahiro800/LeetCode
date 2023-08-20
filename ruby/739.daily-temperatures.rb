@@ -1,23 +1,16 @@
 # @param {Integer[]} temperatures
 # @return {Integer[]}
 def daily_temperatures(temperatures)
-  ans = []
+  ans = Array.new(temperatures.length, 0)
   stack = []
 
-  temperatures.each_with_index do |temperature, i|
-    if stack.empty?
-      stack.push(i)
-    else
-      while !stack.empty? && temperatures[stack.last] < temperature
-        ans[stack.last] = i - stack.last
-        stack.pop
-      end
-      stack.push(i)
+  temperatures.each_with_index do |temp, i|
+    while !stack.empty? && temperatures[stack.last] < temp
+      ans[stack.last] = i - stack.last
+      stack.pop
     end
-  end
 
-  stack.each do |i|
-    ans[i] = 0
+    stack.push(i)
   end
 
   ans
