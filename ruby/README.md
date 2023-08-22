@@ -363,3 +363,12 @@ def daily_temperatures(temperatures)
   ans
 end
 ```
+
+# 853.car-fleet
+- 計算量で困った。
+- Hashで `O(1)`で検索できるようにする？
+  - これだと、全ての要素を循環しないといけないのでだめ。
+  - => sortで解決する
+- 何を基準にsortするか？
+  - position or speed で考えて positionでsortしつつspeedを比較するか〜みたいな感覚だったが、これを使って、「時間」を比較するのが良かった
+- 合体後も他のを気にする必要があるが、stackで末尾と比較していけば問題ない
