@@ -2,11 +2,16 @@
 # @param {Integer} target
 # @return {Integer[]}
 def two_sum(numbers, target)
-  numbers.each_with_index.each_with_object({}) do |(num, index), hash|
-    if hash[target - num]
-      return [hash[target - num], index + 1]
-    end
+  left = 0
+  right = numbers.length - 1
 
-    hash[num] = index + 1
+  while left < right
+    return [left + 1, right + 1] if numbers[left] + numbers[right] == target
+
+    if numbers[left] + numbers[right] > target
+      right -= 1
+    else
+      left += 1
+    end
   end
 end
