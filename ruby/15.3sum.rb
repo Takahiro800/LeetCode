@@ -3,8 +3,7 @@
 def three_sum(nums)
   sorted_nums = nums.sort
 
-  ans = []
-  sorted_nums.each_with_index.each do |num, index|
+  sorted_nums.each_with_index.each_with_object([]) do |(num, index), ans|
     return ans if num > 0
     next if index > 0 && num == sorted_nums[index - 1]
 
@@ -28,6 +27,4 @@ def three_sum(nums)
       end
     end
   end
-
-  ans
 end
