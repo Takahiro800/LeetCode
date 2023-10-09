@@ -7,15 +7,16 @@ impl Solution {
             return nums[left];
         }
 
-        while left + 1 < right {
+        while left < right {
             let mid = (left + right) / 2;
-            if nums[mid] > nums[left] {
-                left = mid;
-            } else {
+
+            if nums[0] > nums[mid] {
                 right = mid;
+            } else {
+                left = mid + 1;
             }
         }
 
-        nums[left].min(nums[right])
+        nums[left]
     }
 }
