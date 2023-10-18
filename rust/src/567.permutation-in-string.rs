@@ -1,38 +1,35 @@
 impl Solution {
     pub fn check_inclusion(s1: String, s2: String) -> bool {
-        use std::collections::HashMap;
+        let mut freq = [0; 26];
+        let s1_bytes = s1.as_bytes();
+        let s2_bytes = s2.as_bytes();
 
-        let mut hash = HashMap::new();
-        let mut left: usize = 0;
-        let mut right: usize = 0;
-
-        for char in s1.chars() {
-            *hash.entry(char).or_insert(0) += 1;
+        for &byte in s1_bytes {
+            freq[(byte - b'a') as usize] += 1;
         }
 
-        while right < s2.len() {
-            if let Some(value) = hash.get_mut(&s2.chars().nth(right).unwrap()) {
-                if *value == 0 {
-                    while s2.chars().nth(left).unwrap() != s2.chars().nth(right).unwrap() {
-                        *hash.get_mut(&s2.chars().nth(left).unwrap()).unwrap() += 1;
-                        left += 1;
-                    }
-                    left += 1;
-                } else {
-                    *value -= 1;
-                }
+        let mut left = 0;
+        let mut right = 0;
+
+        while right < s2_bytes.len() {
+            let idx = (s2_bytes[right] - b'a') as usize;
+
+            if freq[idx] > 0 {
+                freq[idx] -= 1;
+                right += 1;
+            } else if left == right {
+                left += 1;
+                right += 1;
             } else {
-                while left < right {
-                    *hash.get_mut(&s2.chars().nth(left).unwrap()).unwrap() += 1;
-                    left += 1;
-                }
+                freq[(s2_bytes[left] - b'a') as usize] += 1;
                 left += 1;
             }
-            right += 1;
-            if right - left == s1.len() {
+
+            if right - left == s1_bytes.len() {
                 return true;
             }
         }
+
         false
     }
 }
