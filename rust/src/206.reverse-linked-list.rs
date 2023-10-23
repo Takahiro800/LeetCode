@@ -16,16 +16,17 @@
 // }
 impl Solution {
     pub fn reverse_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        let mut prev_node = None;
-        let mut curr_node = head;
+        recursive(head, None)
+    }
+}
 
-        while let Some(mut node) = curr_node {
+fn recursive(head: Option<Box<ListNode>>, prev: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    match head {
+        None => prev,
+        Some(mut node) => {
             let next_node = node.next.take();
-            node.next = prev_node;
-            prev_node = Some(node);
-            curr_node = next_node;
+            node.next = prev;
+            recursive(next_node, Some(node))
         }
-
-        prev_node
     }
 }
