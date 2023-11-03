@@ -9,38 +9,19 @@
 # @param {ListNode} head
 # @param {Integer} n
 # @return {ListNode}
+
 def remove_nth_from_end(head, n)
-  end_node = reverse_list(head)
-  removed_head = remove_nth(end_node, n)
+  left = head
+  right = left
 
-  reverse_list(removed_head)
-end
+  n.times.each { |_| right = right.next }
+  return left.next unless right
 
-def reverse_list(head)
-  prev = nil
-  current = head
-
-  while current
-    tmp = current.next
-    current.next = prev
-    prev = current
-    current = tmp
+  while right&.next
+    left = left.next
+    right = right.next
   end
 
-  prev
-end
-
-def remove_nth(head, n)
-  return head.next if n == 1
-
-  num = 1
-  current = head
-
-  while num < n - 1 && current
-    current = current.next
-    num += 1
-  end
-
-  current.next = current.next&.next
+  left.next = left.next&.next
   head
 end
