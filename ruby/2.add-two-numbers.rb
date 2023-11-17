@@ -18,27 +18,16 @@ def add_two_numbers(l1, l2)
     end
   end
 
-  while l1
-    current_sum = l1.val + carry
+  remainning = l1 || l2
+
+  while remainning
+    current_sum = remainning.val + carry
     result_node.val = current_sum % 10
     carry = current_sum / 10
 
-    l1 = l1.next
+    remainning = remainning.next
 
-    if l1 || carry.positive?
-      result_node.next = ListNode.new
-      result_node = result_node.next
-    end
-  end
-
-  while l2
-    current_sum = l2.val + carry
-    result_node.val = current_sum % 10
-    carry = current_sum / 10
-
-    l2 = l2.next
-
-    if l2 || carry.positive?
+    if remainning || carry.positive?
       result_node.next = ListNode.new
       result_node = result_node.next
     end
