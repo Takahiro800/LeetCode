@@ -17,6 +17,6 @@ impl Solution {
             }
         }
 
-        nums[left]
+        nums[left];
     }
 }
