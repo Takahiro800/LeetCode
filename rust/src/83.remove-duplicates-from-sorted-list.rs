@@ -20,7 +20,7 @@ impl Solution {
         let mut cur = &mut head;
 
         while let Some(current) = cur.as_mut() {
-            while let Some(next) = &mut current.next {
+            while let Some(next) = current.next.as_mut() {
                 if current.val != next.val {
                     break;
                 }
