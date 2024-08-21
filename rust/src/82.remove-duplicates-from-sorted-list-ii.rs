@@ -1,5 +1,6 @@
 use crate::{remove_duplicates_from_sorted_list::ListNode, Solution};
 
+#[allow(dead_code)]
 impl Solution {
     // function nameが被っているので_iiをつけている。提出する際は消すこと
     pub fn delete_duplicates_ii(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
