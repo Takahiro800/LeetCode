@@ -6,6 +6,7 @@ pub struct ListNode {
     pub next: Option<Box<ListNode>>,
 }
 
+#[allow(dead_code)]
 impl ListNode {
     #[inline]
     fn new(val: i32) -> Self {
@@ -13,17 +14,18 @@ impl ListNode {
     }
 }
 
+#[allow(dead_code)]
 impl Solution {
     pub fn delete_duplicates(mut head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         let mut cur = &mut head;
 
         while let Some(current) = cur {
             while let Some(next) = &mut current.next {
-                if current.val == next.val {
-                    current.next = next.next.take();
-                } else {
+                if current.val != next.val {
                     break;
                 }
+
+                current.next = next.next.take();
             }
 
             cur = &mut current.next;
