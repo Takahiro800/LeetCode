@@ -25,7 +25,7 @@ impl Solution {
             }
         }
 
-        new_head.unwrap().next
+        new_head.and_then(|head| head.next)
     }
 
     fn skip_duplicates(mut node: Box<ListNode>) -> Box<ListNode> {
