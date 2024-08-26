@@ -7,5 +7,8 @@ mod remove_duplicates_from_sorted_list_ii;
 #[path = "2.add-two-numbers.rs"]
 mod add_two_numbers;
 
+#[path = "20.valid-parentheses.rs"]
+mod valid_parentheses;
+
 fn main() {}
 struct Solution {}
