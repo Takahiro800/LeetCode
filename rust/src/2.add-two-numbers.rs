@@ -21,7 +21,7 @@ impl Solution {
         l2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
         let mut head = Some(Box::new(ListNode::new(0)));
-        let (mut l1, mut l2, mut carry, mut current) = (l1, l2, 0_i32, &mut head);
+        let (mut current, mut carry, mut l1, mut l2) = (&mut head, 0_i32, l1, l2);
 
         while l1.is_some() || l2.is_some() || carry.is_positive() {
             let sum = carry
