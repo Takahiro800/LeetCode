@@ -10,5 +10,8 @@ mod add_two_numbers;
 #[path = "20.valid-parentheses.rs"]
 mod valid_parentheses;
 
+#[path = "206.reverse-linked-list.rs"]
+mod reverse_linked_list;
+
 fn main() {}
 struct Solution {}
