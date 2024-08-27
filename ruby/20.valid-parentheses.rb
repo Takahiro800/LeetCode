@@ -1,24 +1,19 @@
+BRACKET_PAIRS = {
+  '(' => ')',
+  '[' => ']',
+  '{' => '}'
+}.freeze
+
 # @param {String} s
 # @return {Boolean}
 def is_valid(s)
-  hash = {
-    "{": "}",
-    "(": ")",
-    "[": "]",
-  }.freeze
+  brackets = s.chars.each_with_object([]) do |char, stack|
+    if BRACKET_PAIRS.key?(char)
+      stack.push(char)
+    elsif BRACKET_PAIRS[stack.pop] != char
+      return false
+    end
+  end
 
-  open_brackets = hash.keys.map(&:to_s)
-  close_brackets = hash.values
-
-  stack = s.chars.each_with_object([]) do |char, stack|
-            if open_brackets.include?(char)
-              stack.push(char)
-            else
-              if hash[stack.pop&.to_sym] != char
-                return false
-              end
-            end
-          end
-
-  stack.empty?
+  brackets.is_empty?
 end
