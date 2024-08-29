@@ -13,5 +13,8 @@ mod valid_parentheses;
 #[path = "206.reverse-linked-list.rs"]
 mod reverse_linked_list;
 
+#[path = "703.kth-largest-element-in-a-stream.rs"]
+mod kth_largest_element_in_a_stream;
+
 fn main() {}
 struct Solution {}
