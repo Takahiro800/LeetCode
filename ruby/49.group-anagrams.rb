@@ -1,12 +1,12 @@
 # @param {String[]} strs
 # @return {String[][]}
 def group_anagrams(strs)
-  anagrams = Hash.new { |h, k| h[k] = [] }
+  anagrams = Hash.new { |hash, key| hash[key] = [] }
 
   strs.each do |str|
-    hash = Hash.new(0)
-    str.each_char { |c| hash[c] += 1 }
-    anagrams[hash].append(str)
+    char_count = Hash.new(0)
+    str.each_char { |char| char_count[char] += 1 }
+    anagrams[char_count].push(str)
   end
 
   anagrams.values
