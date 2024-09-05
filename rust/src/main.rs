@@ -19,5 +19,11 @@ mod kth_largest_element_in_a_stream;
 #[path = "347.top-k-frequent-elements.rs"]
 mod top_k_frequent_elements;
 
+#[path = "373.find-k-pairs-with-smallest-sums.rs"]
+mod find_k_pairs_with_smallest_sums;
+
+#[path = "1.two-sum.rs"]
+mod two_sum;
+
 fn main() {}
 struct Solution {}
