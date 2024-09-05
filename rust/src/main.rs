@@ -25,5 +25,8 @@ mod find_k_pairs_with_smallest_sums;
 #[path = "1.two-sum.rs"]
 mod two_sum;
 
+#[path = "49.group-anagrams.rs"]
+mod group_anagrams;
+
 fn main() {}
 struct Solution {}
