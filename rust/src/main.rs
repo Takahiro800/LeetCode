@@ -28,5 +28,8 @@ mod two_sum;
 #[path = "49.group-anagrams.rs"]
 mod group_anagrams;
 
+#[path = "349.intersection-of-two-arrays.rs"]
+mod intersection_of_two_arrays;
+
 fn main() {}
 struct Solution {}
