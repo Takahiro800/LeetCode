@@ -5,16 +5,22 @@ use crate::Solution;
 #[allow(dead_code)]
 impl Solution {
     pub fn num_unique_emails(emails: Vec<String>) -> i32 {
-        let mut set: HashSet<String> = HashSet::new();
+        emails
+            .into_iter()
+            .map(|email| Self::clean_email(email))
+            .collect::<HashSet<_>>()
+            .len() as i32
+    }
 
-        for email in emails {
-            let parts: Vec<&str> = email.split('@').collect();
-            let local = parts[0].split('+').collect::<Vec<&str>>()[0];
-            let local = local.replace(".", "");
-            let email = local + "@" + parts[1];
-            set.insert(email);
-        }
+    fn clean_email(email: String) -> String {
+        let v: Vec<&str> = email.split('@').collect();
 
-        set.len() as i32
+        let local = v[0]
+            .chars()
+            .take_while(|&char| char != '+')
+            .filter(|&char| char != '.')
+            .collect::<String>();
+
+        [&local, v[1]].join("@")
     }
 }
