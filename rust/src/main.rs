@@ -31,5 +31,8 @@ mod group_anagrams;
 #[path = "349.intersection-of-two-arrays.rs"]
 mod intersection_of_two_arrays;
 
+#[path = "929.unique-email-addresses.rs"]
+mod unique_email_addresses;
+
 fn main() {}
 struct Solution {}
