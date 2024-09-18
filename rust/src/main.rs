@@ -34,5 +34,11 @@ mod intersection_of_two_arrays;
 #[path = "929.unique-email-addresses.rs"]
 mod unique_email_addresses;
 
+#[path = "387.first-unique-character-in-a-string.rs"]
+mod first_unique_charcter_in_a_string;
+
+#[path = "560.subarray-sum-equals-k.rs"]
+mod subarray_sum_equals_k;
+
 fn main() {}
 struct Solution {}
