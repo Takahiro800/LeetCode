@@ -40,5 +40,8 @@ mod first_unique_charcter_in_a_string;
 #[path = "560.subarray-sum-equals-k.rs"]
 mod subarray_sum_equals_k;
 
+#[path = "200.number-of-islands.rs"]
+mod number_of_islands;
+
 fn main() {}
 struct Solution {}
