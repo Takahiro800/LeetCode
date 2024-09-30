@@ -43,5 +43,8 @@ mod subarray_sum_equals_k;
 #[path = "200.number-of-islands.rs"]
 mod number_of_islands;
 
+#[path = "695.max-area-of-island.rs"]
+mod max_area_of_island;
+
 fn main() {}
 struct Solution {}
