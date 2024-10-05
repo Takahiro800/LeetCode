@@ -31,17 +31,24 @@ impl Solution {
 
     fn min_depth_recursion(root: Option<&Rc<RefCell<TreeNode>>>) -> i32 {
         match root {
-            Some(node) => match (node.borrow().left.as_ref(), node.borrow().right.as_ref()) {
-                (None, None) => 1,
-                (Some(left), None) => Self::min_depth_recursion(Some(left)) + 1,
-                (None, Some(right)) => Self::min_depth_recursion(Some(right)) + 1,
-                (Some(left), Some(right)) => {
-                    cmp::min(
-                        Self::min_depth_recursion(Some(left)),
-                        Self::min_depth_recursion(Some(right)),
-                    ) + 1
+            Some(node) => {
+                let node_ref = node.borrow();
+
+                match (&node_ref.left, &node_ref.right) {
+                    (Some(left), Some(right)) => {
+                        cmp::min(
+                            Self::min_depth_recursion(Some(left)),
+                            Self::min_depth_recursion(Some(right)),
+                        ) + 1
+                    }
+                    _ => {
+                        let left_depth = Self::min_depth_recursion(node_ref.left.as_ref());
+                        let right_depth = Self::min_depth_recursion(node_ref.right.as_ref());
+
+                        left_depth + right_depth + 1
+                    }
                 }
-            },
+            }
             None => 0,
         }
     }
