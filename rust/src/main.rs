@@ -49,5 +49,8 @@ mod max_area_of_island;
 #[path = "104.maximum-depth-of-binary-tree.rs"]
 mod maxium_depth_of_binary_tree;
 
+#[path = "111.minimum-depth-of-binary-tree.rs"]
+mod minimum_depth_of_binary_tree;
+
 fn main() {}
 struct Solution {}
