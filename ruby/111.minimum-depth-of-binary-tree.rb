@@ -11,14 +11,18 @@ end
 # @param {TreeNode} root
 # @return {Integer}
 def min_depth(root)
-  return 0 if root.nil?
+  min_depth_recursion(root, 0)
+end
 
-  left_depth = min_depth(root.left)
-  right_depth = min_depth(root.right)
+def min_depth_recursion(node, current_depth)
+  return current_depth if node.nil?
 
-  if left_depth.positive? && right_depth.positive?
-    [left_depth, right_depth].min + 1
+  left_depth = min_depth_recursion(node.left, current_depth + 1)
+  right_depth = min_depth_recursion(node.right, current_depth + 1)
+
+  if !node.left.nil? && !node.right.nil?
+    [left_depth, right_depth].min
   else
-    left_depth + right_depth + 1
+    [left_depth, right_depth].max
   end
 end
