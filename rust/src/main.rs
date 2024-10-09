@@ -52,5 +52,11 @@ mod maxium_depth_of_binary_tree;
 #[path = "111.minimum-depth-of-binary-tree.rs"]
 mod minimum_depth_of_binary_tree;
 
+#[path = "617.merge-two-binary-trees.rs"]
+mod merge_two_binary_trees;
+
+#[path = "108.convert-sorted-array-to-binary-search-tree.rs"]
+mod convert_sorted_array_to_binary_search_tree;
+
 fn main() {}
 struct Solution {}
