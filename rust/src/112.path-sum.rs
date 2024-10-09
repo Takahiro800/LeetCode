@@ -25,22 +25,21 @@ use std::rc::Rc;
 #[allow(dead_code)]
 impl Solution {
     pub fn has_path_sum(root: Option<Rc<RefCell<TreeNode>>>, target_sum: i32) -> bool {
-        Self::dfs(root, target_sum)
+        Self::dfs(&root, target_sum)
     }
 
-    fn dfs(root: Option<Rc<RefCell<TreeNode>>>, target_sum: i32) -> bool {
-        match root {
-            None => false,
-            Some(node) => {
-                let node = node.borrow();
+    fn dfs(node: &Option<Rc<RefCell<TreeNode>>>, target_sum: i32) -> bool {
+        if let Some(node) = node {
+            let node = node.borrow();
+            let rem = target_sum - node.val;
 
-                if node.left.is_none() && node.right.is_none() {
-                    return target_sum - node.val == 0;
-                }
-
-                Self::dfs(node.left.clone(), target_sum - node.val)
-                    || Self::dfs(node.right.clone(), target_sum - node.val)
+            if node.left.is_none() && node.right.is_none() {
+                return rem == 0;
             }
+
+            Self::dfs(&node.left, rem) || Self::dfs(&node.right, rem)
+        } else {
+            false
         }
     }
 }

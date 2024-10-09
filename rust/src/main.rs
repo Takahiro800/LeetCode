@@ -58,5 +58,8 @@ mod merge_two_binary_trees;
 #[path = "108.convert-sorted-array-to-binary-search-tree.rs"]
 mod convert_sorted_array_to_binary_search_tree;
 
+#[path = "112.path-sum.rs"]
+mod path_sum;
+
 fn main() {}
 struct Solution {}
