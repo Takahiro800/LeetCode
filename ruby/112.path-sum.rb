@@ -12,17 +12,12 @@ end
 # @param {Integer} target_sum
 # @return {Boolean}
 def has_path_sum(root, target_sum)
-  if root.nil?
-    return false
-  end
-
-  if roof?(root)
-    return target_sum == root.val
-  end
-
-  has_path_sum(root.left, target_sum - root.val) || has_path_sum(root.right, target_sum - root.val)
+  dfs?(root, target_sum)
 end
 
-def roof?(node)
-  node.left.nil? && node.right.nil?
+def dfs?(node, target_sum)
+  return false if node.nil?
+  return target_sum == node.val if node.left.nil? && node.right.nil?
+
+  dfs?(node.left, target_sum - node.val) || dfs?(node.right, target_sum - node.val)
 end
