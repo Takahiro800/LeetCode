@@ -67,4 +67,7 @@ mod binary_tree_leverl_order_traversal;
 #[path = "103.binary-tree-zigzag-level-order-traversal.rs"]
 mod binary_tree_zigzag_level_order_traversal;
 
+#[path = "98.validate-binary-search-tree.rs"]
+mod validate_binary_search_tree;
+
 struct Solution {}
