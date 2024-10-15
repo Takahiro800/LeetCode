@@ -70,4 +70,7 @@ mod binary_tree_zigzag_level_order_traversal;
 #[path = "98.validate-binary-search-tree.rs"]
 mod validate_binary_search_tree;
 
+#[path = "105.construct-binary-tree-from-preorder-and-inorder-traversal.rs"]
+mod construct_binary_tree_from_preorder_and_inorder_traversal;
+
 struct Solution {}
