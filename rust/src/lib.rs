@@ -73,4 +73,10 @@ mod validate_binary_search_tree;
 #[path = "105.construct-binary-tree-from-preorder-and-inorder-traversal.rs"]
 mod construct_binary_tree_from_preorder_and_inorder_traversal;
 
+#[path = "300.longest-increasing-subsequence.rs"]
+mod longest_increasing_subsequence;
+
+#[path = "53.maximum-subarray.rs"]
+mod maximum_subarray;
+
 struct Solution {}
