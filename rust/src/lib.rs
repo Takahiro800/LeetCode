@@ -79,4 +79,7 @@ mod longest_increasing_subsequence;
 #[path = "53.maximum-subarray.rs"]
 mod maximum_subarray;
 
+#[path = "62.unique-paths.rs"]
+mod unique_paths;
+
 struct Solution {}
