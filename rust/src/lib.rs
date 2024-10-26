@@ -82,4 +82,7 @@ mod maximum_subarray;
 #[path = "62.unique-paths.rs"]
 mod unique_paths;
 
+#[path = "63.unique-paths-ii.rs"]
+mod unique_paths_ii;
+
 struct Solution {}
