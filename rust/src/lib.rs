@@ -85,4 +85,7 @@ mod unique_paths;
 #[path = "63.unique-paths-ii.rs"]
 mod unique_paths_ii;
 
+#[path = "198.house-robber.rs"]
+mod house_robber;
+
 struct Solution {}
