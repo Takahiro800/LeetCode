@@ -3,24 +3,21 @@ use crate::Solution;
 impl Solution {
     pub fn rob(nums: Vec<i32>) -> i32 {
         let length = nums.len();
-        let first_value = nums[0];
 
-        let (a, b) = nums.iter().enumerate().skip(1).fold(
-            (first_value, first_value),
-            |(prev_a, prev_b), (i, &num)| {
-                if i == 1 || i == length - 1 {
-                    (prev_a, prev_b)
-                } else {
-                    (prev_b + num, prev_a.max(prev_b))
-                }
-            },
-        );
+        if length == 1 {
+            return nums[0];
+        }
 
-        let ans = a.max(b);
+        fn rob_linear(nums: &[i32]) -> i32 {
+            let (a, b) = nums.iter().fold((0, 0), |(prev_a, prev_b), &num| {
+                (prev_b + num, prev_a.max(prev_b))
+            });
+            a.max(b)
+        }
 
-        let (a, b) = nums.iter().skip(1).fold((0, 0), |(prev_a, prev_b), &num| {
-            (prev_b + num, prev_a.max(prev_b))
-        });
-        ans.max(a.max(b))
+        let rob_first = rob_linear(&nums[..length - 1]);
+        let not_rob_first = rob_linear(&nums[1..]);
+
+        rob_first.max(not_rob_first)
     }
 }
