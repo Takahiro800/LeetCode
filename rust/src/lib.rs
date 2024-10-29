@@ -91,4 +91,7 @@ mod house_robber;
 #[path = "213.house-robber-ii.rs"]
 mod house_robber_ii;
 
+#[path = "121.best-time-to-buy-and-sell-stock.rs"]
+mod best_time_to_buy_and_sell_stock;
+
 struct Solution {}
