@@ -5,11 +5,7 @@ impl Solution {
         prices
             .iter()
             .fold((i32::MAX, 0), |(buy_price, profit), &price| {
-                if price < buy_price {
-                    (price, profit)
-                } else {
-                    (price, profit + (price - buy_price))
-                }
+                (price, profit + 0.max(price - buy_price))
             })
             .1
     }
