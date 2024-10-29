@@ -94,4 +94,7 @@ mod house_robber_ii;
 #[path = "121.best-time-to-buy-and-sell-stock.rs"]
 mod best_time_to_buy_and_sell_stock;
 
+#[path = "122.best-time-to-buy-and-sell-stock-ii.rs"]
+mod best_time_to_buy_and_sell_stock_ii;
+
 struct Solution {}
