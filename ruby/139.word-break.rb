@@ -2,17 +2,16 @@
 # @param {String[]} word_dict
 # @return {Boolean}
 def word_break(s, word_dict)
-  dp = Hash.new(false)
+  return false if word_dict.empty?
+
+  dp = Array.new(s.size + 1, false)
   dp[0] = true
 
-  word_set = Set.new(word_dict)
-  (1..s.length).each do |end_i|
-    (0...i).each do |start_i|
-      if dp[start_i] && word_set.include?(s[start_i...end_i])
-        dp[end_i] = true
-        break
-      end
+  (1..s.size).each do |i|
+    word_dict.select { |word| word.size <= i }.each do |word|
+      dp[i] ||= dp[i - word.size] && s[i - word.size...i] == word
     end
   end
-  dp[s.length]
+
+  dp.last
 end
