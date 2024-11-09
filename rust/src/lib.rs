@@ -97,4 +97,7 @@ mod best_time_to_buy_and_sell_stock;
 #[path = "122.best-time-to-buy-and-sell-stock-ii.rs"]
 mod best_time_to_buy_and_sell_stock_ii;
 
+#[path = "139.word-break.rs"]
+mod word_break;
+
 struct Solution {}
