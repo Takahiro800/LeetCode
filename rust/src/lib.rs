@@ -106,4 +106,7 @@ mod word_break;
 #[path = "322.coin-change.rs"]
 mod coin_change;
 
+#[path = "35.search-insert-position.rs"]
+mod search_insert_position;
+
 struct Solution {}
