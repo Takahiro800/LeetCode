@@ -34,6 +34,9 @@ mod intersection_of_two_arrays;
 #[path = "929.unique-email-addresses.rs"]
 mod unique_email_addresses;
 
+#[path = "153.find-minimum-in-rotated-sorted-array.rs"]
+mod find_minium_in_rotated_sorted_array;
+
 #[path = "387.first-unique-character-in-a-string.rs"]
 mod first_unique_charcter_in_a_string;
 
@@ -99,5 +102,8 @@ mod best_time_to_buy_and_sell_stock_ii;
 
 #[path = "139.word-break.rs"]
 mod word_break;
+
+#[path = "322.coin-change.rs"]
+mod coin_change;
 
 struct Solution {}
