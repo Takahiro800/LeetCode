@@ -1,25 +1,22 @@
 package main
 
 func lengthOfLongestSubstring(s string) int {
-	start := 0
-	ans := 0
-	usedChar := make(map[byte]int)
+	max := 0
+	appear := make(map[rune]bool)
+	window := []rune{}
 
-	for i := 0; i < len(s); i++ {
-		char := s[i]
-		if _, ok := usedChar[char]; ok && usedChar[char] >= start {
-			start = usedChar[char] + 1
+	for _, char := range s {
+		for appear[char] {
+			c := window[0]
+			delete(appear, c)
+			window = window[1:]
 		}
+		appear[char] = true
+		window = append(window, char)
 
-		ans = max(ans, i-start+1)
-		usedChar[char] = i
+		if len(window) > max {
+			max = len(window)
+		}
 	}
-	return ans
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
+	return max
 }
