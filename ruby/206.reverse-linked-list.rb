@@ -1,11 +1,4 @@
-class ListNode
-  attr_accessor :val, :next
-
-  def initialize(val = 0, _next = nil)
-    @val = val
-    @next = _next
-  end
-end
+# frozen_string_literal: true
 
 # @param {ListNode} head
 # @return {ListNode}
@@ -13,10 +6,10 @@ def reverse_list(head)
   recursive_reverse_list(head)
 end
 
-def recursive_reverse_list(head, prev = nil)
-  return prev unless head
+def recursive_reverse_list(current, prev = nil)
+  return prev unless current
 
-  next_node = head.next
-  head.next = prev
-  recursive_reverse_list(next_node, head)
+  next_node = current.next
+  current.next = prev
+  recursive_reverse_list(next_node, current)
 end
