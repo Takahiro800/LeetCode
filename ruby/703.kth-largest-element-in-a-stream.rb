@@ -3,7 +3,7 @@
 class KthLargest
   def initialize(max_size, nums)
     @max_size = max_size
-    @nums = nums.sort.reverse[0..k]
+    @nums = nums.sort.reverse[0...max_size]
   end
 
   def add(val)
