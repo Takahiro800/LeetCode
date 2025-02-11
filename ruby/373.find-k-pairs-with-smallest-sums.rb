@@ -1,29 +1,21 @@
 def k_smallest_pairs(nums1, nums2, k)
-  heap = []
-  m = nums1.size
-  n = nums2.size
-  ans = []
+  max_j = nums2.length
 
-  (0...m).each do |i|
-    break if heap.size >= k
+  nums1.each_with_object([]) do |n, heap|
+    return heap if max_j.zero? && heap.length == k
 
-    heap.push([nums1[i] + nums2[0], i, 0])
-    heap.sort!
-  end
+    nums2.each_with_index do |m, j|
+      break heap if j > max_j
 
-  while k.positive?
-    break if heap.empty?
-
-    _sum, i, j = heap.shift
-    ans.push([nums1[i], nums2[j]])
-
-    if j + 1 < n
-      heap.push([nums1[i] + nums2[j + 1], i, j + 1])
-      heap.sort!
+      if (l = heap.bsearch_index { |pair| pair[0] + pair[1] > n + m })
+        heap.insert(l, [n, m])
+        heap.pop if heap.length > k
+      elsif heap.length < k
+        heap.push([n, m])
+      else
+        max_j = j
+        break heap
+      end
     end
-
-    k -= 1
   end
-
-  ans
 end
