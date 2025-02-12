@@ -2,9 +2,9 @@
 # @param {Integer} target
 # @return {Integer[]}
 def two_sum(nums, target)
-  nums.each_with_index.each_with_object({}) do |(n, i), hash|
-    return [hash[target - n], i] if hash[target - n]
+  nums.each_with_index.each_with_object({}) do |(num, i), stack|
+    return [i, stack[target - num]] if stack[target - num]
 
-    hash[n] = i
+    stack[num] = i
   end
 end
