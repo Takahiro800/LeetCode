@@ -1,8 +1,6 @@
 def first_uniq_char(s)
-  s.each_char do |c|
-    index = s.index(c)
-    r_index = s.rindex(c)
-    return index if index == r_index
+  s.chars.each_with_index do |c, i|
+    return i if s.index(c) == s.rindex(c)
   end
 
   -1
