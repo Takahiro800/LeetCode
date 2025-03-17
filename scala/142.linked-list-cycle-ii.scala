@@ -28,4 +28,26 @@ object Solution {
 
     null
   }
+
+  def detectCycleFP(head: ListNode): Option[ListNode] = {
+    @annotation.tailrec
+    def findIntersection(slow: ListNode, fast: ListNode): Option[ListNode] = {
+      (slow, fast, fast.next) match {
+        case (_, null, _) | (_, _, null) => None
+        case (s, f, _) if s == f         => Some(s)
+        case (s, f, _) => findIntersection(s.next, f.next.next)
+      }
+    }
+
+    @annotation.tailrec
+    def findCycleStart(slow: ListNode, fast: ListNode): ListNode = {
+      if (slow == fast) slow
+      else findCycleStart(slow.next, fast.next)
+    }
+
+    findIntersection(head, head) match {
+      case None               => None
+      case Some(intersection) => Some(findCycleStart(head, intersection))
+    }
+  }
 }
