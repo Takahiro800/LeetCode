@@ -7,16 +7,17 @@ class ListNode(_x: Int = 0, _next: ListNode = null) {
 
 object Solution {
   def deleteDuplicates(head: ListNode): ListNode = {
-    var current = head
-
-    while (current != null && current.next != null) {
-      if (current.x == current.next.x) {
-        current.next = current.next.next
+    @annotation.tailrec
+    def recursion(prev: ListNode, current: ListNode): ListNode = {
+      if (current == null) head
+      else if (prev != null && prev.x == current.x) {
+        prev.next = current.next
+        recursion(prev, current.next)
       } else {
-        current = current.next
+        recursion(current, current.next)
       }
     }
 
-    head
+    recursion(null, head)
   }
 }
