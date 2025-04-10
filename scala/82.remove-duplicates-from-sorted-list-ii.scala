@@ -7,23 +7,28 @@ class ListNode(_x: Int = 0, _next: ListNode = null) {
 
 object Solution {
   def deleteDuplicates(head: ListNode): ListNode = {
-    val dummy = new ListNode(0, head)
-    var prevNode: ListNode = dummy
-    var target: ListNode = head
-
-    while (target != null) {
-      if (target.next != null && target.x == target.next.x) {
-        while (target.next != null && target.x == target.next.x) {
-          target = target.next
-        }
-        prevNode.next = target.next
+    @annotation.tailrec
+    def removeDuplicates(prev: ListNode, curr: ListNode): ListNode = {
+      if (curr == null) {
+        prev.next = null
+        prev.next
+      } else if (curr.next != null && curr.x == curr.next.x) {
+        val nextDistinct = findNextDistinct(curr)
+        removeDuplicates(prev, nextDistinct)
       } else {
-        prevNode.next = target
-        prevNode = target
+        prev.next = curr
+        removeDuplicates(curr, curr.next)
       }
-      target = target.next
     }
 
+    @annotation.tailrec
+    def findNextDistinct(node: ListNode): ListNode = {
+      if (node.next == null || node.x != node.next.x) node.next
+      else findNextDistinct(node.next)
+    }
+
+    val dummy = new ListNode(0)
+    removeDuplicates(dummy, head)
     dummy.next
   }
 }
